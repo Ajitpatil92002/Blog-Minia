@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e ejs,js",
+    "start": "node index.js",
+    "start:dev": "nodemon -e ejs,js",
     "build": "npx tailwindcss -i ./static/css/input.css -o ./static/css/style.css"
   },
   "type": "module",
