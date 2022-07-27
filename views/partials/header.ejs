@@ -1,0 +1,48 @@
+<nav class="relative container mx-auto p-6">
+  <div class="flex justify-between items-center">
+    <div class="pt-2 text-textlightWhite">
+      <a href="/">
+        <h2
+          class="text-xl font-bold font-mono cursor-pointer text-center tracking-widest text-textgreen"
+        >
+          Blog Minia
+        </h2>
+      </a>
+    </div>
+    <div class="hidden md:flex space-x-6 text-textlightWhite">
+      <a href="/" class="hover:text-textgreen">Home</a>
+      <% if (user) { %>
+      <a href="/auth/logout" class="hover:text-textgreen">Logout</a>
+      <a href="/user/profile" class="hover:text-textgreen">Profile</a>
+      <% } else { %>
+
+      <a href="/auth/register" class="hover:text-textgreen">Sign Up</a>
+      <a href="/auth/login" class="hover:text-textgreen">Login</a>
+      <% } %>
+    </div>
+
+    <!-- Hamburger Icon -->
+    <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
+      <span class="hamburger-top bg-green"></span>
+      <span class="hamburger-middle bg-green"></span>
+      <span class="hamburger-bottom bg-green"></span>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div class="md:hidden">
+    <div
+      id="menu"
+      class="absolute text-textlightWhite flex-col items-center self-end hidden py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md bg-navy-blue z-10"
+    >
+      <a href="/" class="hover:text-textgreen">Home</a>
+      <% if (user) { %>
+      <a href="/auth/logout" class="hover:text-textgreen">Logout</a>
+      <a href="/user/profile" class="hover:text-textgreen">Profile</a>
+      <% } else { %>
+
+      <a href="/auth/register" class="hover:text-textgreen">Sign Up</a>
+      <a href="/auth/login" class="hover:text-textgreen">Login</a>
+      <% } %>
+    </div>
+  </div>
+</nav>

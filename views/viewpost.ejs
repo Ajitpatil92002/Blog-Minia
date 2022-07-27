@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Minia</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="bg-navy-blue">
+    <%- include("./partials/header.ejs") -%>
+
+    <div class="container mx-auto flex justify-center flex-col p-5">
+      <div class="md:max-w-xl">
+        <img
+          src="/<%= post.image %> "
+          alt=""
+          class="rounded-md object-cover md:h-auto md:w-48"
+        />
+      </div>
+      <div class="mt-3">
+        <h1 class="text-textgreen text-2xl font-sans"><%= post.title %></h1>
+      </div>
+      <div class="mt-4 w-full">
+        <p class="text-textlightWhite text-sm font-sans text-left">
+          Published By :- %>
+        </p>
+        <div class="mt-4 flex">
+          <a href="/publisheduser/<%= post.userid._id %>">
+            <img
+              src="/<%= post.userid.image %> "
+              alt=""
+              class="rounded-full object h-8"
+            />
+          </a>
+          <a href="/publisheduser/<%= post.userid._id %>" class="cursor-pointer">
+            <p
+              class="text-textlightWhite text-sm font-mono px-4 text-center mt-2"
+            >
+              <%= post.userid.username %>
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="text-textlightWhite font-sans mt-10">
+        <p><%= post.body %></p>
+      </div>
+    </div>
+
+    <script src="/js/index.js"></script>
+  </body>
+</html>

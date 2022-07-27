@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Post</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="bg-navy-blue">
+    <%- include("./partials/header.ejs") -%>
+
+    <div
+      class="min-h-screen bg-navy-blue text-textlightWhite antialiased px-4 sm:py-12"
+    >
+      <div
+        class="relative py-3 w-full sm:max-w-xl mx-auto text-center space-y-10"
+      >
+        <span
+          class="text-2xl font-bold font-mono text-textlightWhite opacity-70"
+          >Add Post</span
+        >
+        <div
+          class="relative mt-4 bg-light-navy shadow-md sm:rounded-lg text-left"
+        >
+          <div class="h-2 bg-green rounded-t-md"></div>
+          <form
+            action="/blogpost/createpost/<%= user.id %>  "
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="p-3 sm:p-10">
+              <div>
+                <label for="Title" class="block font-semibold mt-3 text-"
+                  >Title</label
+                >
+                <input
+                  type="text"
+                  placeholder="Title"
+                  name="title"
+                  id=""
+                  class="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-green-tint rounded-md caret-navy-blue text-navy-blue"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for="Title"
+                  class="block font-semibold mt-3 text-textlightWhite"
+                  >category</label
+                >
+                <select name="category" id="" required>
+                  <option value="tech" class="text-textlightWhite">tech</option>
+                  <option value="sports" class="text-textlightWhite">
+                    sports
+                  </option>
+                  <option value="entertainment" class="text-textlightWhite">
+                    entertainment
+                  </option>
+                  <option value="Political" class="text-textlightWhite">
+                    Political
+                  </option>
+                  <option value="education" class="text-textlightWhite">
+                    education
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label for="image" class="block font-semibold mt-3 text-"
+                  >Add Thumbnail</label
+                >
+                <input
+                  type="file"
+                  name="image"
+                  id=""
+                  class="block mt-2 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </div>
+
+              <div>
+                <label for="description" class="block font-semibold mt-3 text-"
+                  >Description</label
+                >
+                <textarea
+                  placeholder="Description"
+                  name="description"
+                  rows="4"
+                  id=""
+                  class="block border w-full px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-green-tint rounded-md caret-navy-blue text-navy-blue"
+                  required
+                ></textarea>
+              </div>
+
+              <div>
+                <label for="body" class="block font-semibold mt-3 text-"
+                  >Body</label
+                >
+                <textarea
+                  placeholder="Body"
+                  name="body"
+                  rows="4"
+                  id=""
+                  class="block border w-full px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-green-tint rounded-md caret-navy-blue text-navy-blue"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="mt-4 border font-mono border-green hover:bg-green-tint text-white py-2 px-6 rounded-lg"
+              >
+                Submit
+              </button>
+              <button
+                class="border-green border-2 w-24 text-center text-sm p-2 rounded-md font-normal hover:bg-green-tint"
+              >
+                <a href="/user/profile">cancel</a>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/index.js"></script>
+  </body>
+</html>

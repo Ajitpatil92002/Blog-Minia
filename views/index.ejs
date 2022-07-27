@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Minia</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body class="bg-navy-blue">
+    <%- include("./partials/header.ejs") -%>
+   
+    <section id="">
+      <div class="container mx-auto flex flex-col p-5">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-3 md:p-5 mt-10">
+          <% if (posts.length === 0) { %>
+          <p class="text-textlightWhite">Not Post Found</p>
+          <% } %> <% if (posts) { %> <% posts.forEach((post)=>{ %>
+          <div
+            class="flex flex-col sm:flex-row sm:space-x-2 md:space-x-4 sm:justify-between rounded-md opacity-90 bg-light-navy mb-[35px] py-[2rem] px-[1.5rem]"
+          >
+            <div class="md:pt-6 md:max-w-xl cursor-pointer">
+              <a href="/post/<%= post._id %>">
+                <img
+                  src="/<%= post.image %> "
+                  alt=""
+                  class="rounded-md object-cover md:h-auto md:w-48"
+                />
+              </a>
+            </div>
+            <div class="sm:w-2/3">
+              <div class="flex justify-start space-x-6 mt-4 items-center">
+                <div class="pt-4 cursor-pointer">
+                  <a href="/publisheduser/<%= post.userid._id %> ">
+                    <img
+                      src="<%= post.userid.image %>  "
+                      alt=""
+                      class="rounded-full object h-8"
+                    />
+                  </a>
+                </div>
+                <ul
+                  class="flex space-x-3 items-center flex-wrap mt-4 text-textlightWhite"
+                >
+                  <li class="text-sm font-bold tracking-wide">
+                    <%= post.category %>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-textlightWhite text-sm mt-2 font-mono">
+                  <a href="/publisheduser/<%= post.userid._id %> ">
+                    Published By:-
+                    <span class="text-xl px-3"
+                      ><%= post.userid.username %></span
+                    >
+                  </a>
+                </h4>
+              </div>
+
+              <div
+                id=""
+                class="flex flex-col justify-between text-left text-textlightWhite mt-3"
+              >
+                <h4
+                  class="flex text-xl font-mono font-extrabold tracking-normal mb-4 cursor-pointer hover:text-textgreen"
+                >
+                  <a href="/post/<%= post._id %>"><%= post.title %> </a>
+                </h4>
+                <p class="opacity-90 font-sans">
+                  <%= post.description.substring(0,200) +"..." %>
+                </p>
+                <div class="mt-8 cursor-pointer space-x-6">
+                  <a
+                    href="/post/<%= post._id %>"
+                    class="text-center text-textgreen text-sm sm:text-xl font-bold tracking-wider underline hover:opacity-70 underline-offset-4"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }); %> <% } %>
+        </div>
+      </div>
+    </section>
+
+    <script src="./js/index.js"></script>
+  </body>
+</html>

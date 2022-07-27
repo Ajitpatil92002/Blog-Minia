@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="bg-navy-blue">
+    <%- include("./partials/header.ejs") -%>
+
+    <div
+      class="min-h-screen bg-navy-blue text-textlightWhite antialiased px-4 py-6 sm:py-12"
+    >
+      <div
+        class="relative py-3 w-full sm:max-w-xl mx-auto text-center space-y-10"
+      >
+        <span
+          class="text-2xl font-bold font-mono text-textlightWhite opacity-70"
+          >Edit your Profile</span
+        >
+        <div
+          class="relative mt-4 bg-light-navy shadow-md sm:rounded-lg text-left"
+        >
+          <div class="h-2 bg-green rounded-t-md"></div>
+          <form
+            action="/user/profileedit/<%= id %> "
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="p-10">
+              <div>
+                <label for="username" class="block font-semibold mt-3 text-"
+                  >Username</label
+                >
+                <input
+                  type="text"
+                  placeholder="username"
+                  name="username"
+                  id=""
+                  value="<%= user.username %> "
+                  class="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-green-tint rounded-md caret-navy-blue text-navy-blue"
+                />
+              </div>
+              <div>
+                <label for="image" class="block font-semibold mt-3 text-"
+                  >Change profile image</label
+                >
+
+                <input
+                  type="file"
+                  name="image"
+                  id=""
+                  class="block mt-2 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </div>
+
+              <div>
+                <label for="username" class="block font-semibold mt-3 text-"
+                  >Bio</label
+                >
+                <textarea
+                  placeholder="Bio"
+                  name="bio"
+                  rows="4"
+                  id=""
+                  class="block border w-full px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-green-tint rounded-md caret-navy-blue text-navy-blue"
+                >
+ <%= user.bio  %> </textarea
+                >
+              </div>
+              <div class="flex justify-between items-baseline mt-4">
+                <button
+                  type="submit"
+                  class="mt-4 border border-green hover:bg-green-tint text-white py-2 px-6 rounded-lg"
+                >
+                  Save
+                </button>
+                <button
+                  class="border-green border-2 w-24 text-center text-sm p-2 rounded-md font-normal hover:bg-green-tint"
+                >
+                  <a href="/user/profile">cancel</a>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/index.js"></script>
+    <!-- <script>
+      const form = document.querySelector("form");
+      const bio = form.bio.value;
+      const username = form.username.value;
+      const formData = new FormData();
+      const fileField = document.querySelector('input[type="file"]');
+
+      formData.append("username",username);
+      formData.append("bio",bio);
+      formData.append("image", fileField.files[0]);
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const res = await fetch(`/user/profileedit`, {
+          method: "POST",
+          body: formData,
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await res.json();
+        console.log(data);
+        if(data.user){
+          location.assign("/user/profile");
+        }
+      });
+    </script> -->
+  </body>
+</html>

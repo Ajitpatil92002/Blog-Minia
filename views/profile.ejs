@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="bg-navy-blue">
+    <%- include("./partials/header.ejs") -%>
+    <section>
+      <main class="container mx-auto flex flex-col mt-10 p-4 md:w-[70%]">
+        <div class="flex space-x-14 items-center">
+          <div class="">
+            <img
+              src="http://localhost:5000/<%= user.image %> "
+              alt=""
+              class="rounded-full h-28 md:h-40"
+            />
+          </div>
+          <div
+            class="text-center text-textlightWhite flex flex-col justify-between items-center h-full space-y-4"
+          >
+            <h4 class="text-xl font-bold font-mono"><%=user.username%></h4>
+            <div>
+              <button
+                class="border-green border-2 w-24 text-center text-sm p-2 rounded-md font-normal hover:bg-green-tint"
+              >
+                <a href="/user/profileedit">Edit Profile</a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="container mx-auto mt-4 md:mt-10">
+          <div
+            class="flex justify-center text-textlightWhite flex-col space-y-3"
+          >
+            <h2 class="text-xl font-mono opacity-80">
+              Name : <%= user.username %>
+            </h2>
+            <p class="text-xl font-mono opacity-80">
+              <span class="font-bold">Email :</span> <%= user.email %>
+            </p>
+            <p class="font-mono opacity-80">
+              <span class="font-bold text-xl">Bio :</span> <%= user.bio %>
+            </p>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <section class="container mx-auto px-4 my-10">
+      <div class="flex flex-col">
+        <div class="flex justify-center space-x-6 items-center mb-5">
+          <h4
+            class="text-3xl md:text-6xl font-mono font-bold text-textlightWhite text-center opacity-80 self-baseline"
+          >
+            DashBoard
+          </h4>
+          <button
+            class="border-green text-textlightWhite border-2 w-24 text-center text-sm p-2 rounded-md font-normal hover:bg-green-tint"
+          >
+            <a href="/blogpost/createpost/">Add Post</a>
+          </button>
+        </div>
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full">
+                <thead class="bg-light-navy border-b">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="text-sm font-medium text-textlightWhite opacity-80 px-6 py-4 text-left"
+                    >
+                      #
+                    </th>
+                    <th
+                      scope="col"
+                      class="text-sm font-medium text-textlightWhite opacity-80 px-6 py-4 text-left"
+                    >
+                      Post Title
+                    </th>
+                    <th
+                      scope="col"
+                      class="text-sm font-medium text-textlightWhite opacity-80 px-6 py-4 text-left"
+                    >
+                      Author Name
+                    </th>
+                    <th
+                      scope="col"
+                      class="text-sm font-medium text-textlightWhite opacity-80 px-6 py-4 text-left"
+                    >
+                      Posted At
+                    </th>
+                    <th
+                      scope="col"
+                      class="text-sm font-medium text-textlightWhite opacity-80 px-6 py-4 text-left"
+                    >
+                      Edit
+                    </th>
+                    <th
+                      scope="col"
+                      class="text-sm font-medium text-textlightWhite opacity-80 px-6 py-4 text-left"
+                    >
+                      Delete
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (posts) { %> <% posts.forEach((post)=>{ %>
+
+                  <tr
+                    class="bg-light-navy border-b transition duration-300 ease-in-out hover:bg-navy-blue hover:cursor-pointer"
+                  >
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-textlightWhite opacity-80"
+                    >
+                      1
+                    </td>
+                    <td
+                      class="text-sm text-textlightWhite opacity-80 font-light px-6 py-4 whitespace-nowrap"
+                    >
+                      <a href="/post/<%= post._id %>"> <%= post.title.substring(0,20)+"..." %> </a>
+                    </td>
+                    <td
+                      class="text-sm text-textlightWhite opacity-80 font-light px-6 py-4 whitespace-nowrap"
+                    >
+                      <%= user.username %>
+                    </td>
+                    <td
+                      class="text-sm text-textlightWhite opacity-80 font-light px-6 py-4 whitespace-nowrap"
+                    >
+                      <%= post.createdAt %>
+                    </td>
+                    <td
+                      class="text-sm text-textlightWhite opacity-80 font-light px-6 py-4 whitespace-nowrap"
+                    >
+                    <a href="/user/postedit/<%= post._id %> ">
+                      <button
+                        class="border-green border-2 w-24 text-center text-sm p-2 rounded-md font-normal hover:bg-green-tint"
+                      >
+                        Edit
+                      </button>
+                    </a>
+                    </td>
+                    <td
+                      class="text-sm text-textlightWhite opacity-80 font-light px-6 py-4 whitespace-nowrap"
+                    >
+                      <button
+                        class="border-green border-2 w-24 text-center text-sm p-2 rounded-md font-normal hover:bg-green-tint"
+                      >
+                        <a href="/user//postdelete/<%= post._id %> ">Delete</a>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <% })} %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="/js/index.js"></script>
+  </body>
+</html>
