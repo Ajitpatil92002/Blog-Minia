@@ -56,7 +56,7 @@ export const sendRestPasswordMail = (authVerifytoken, email, id) => {
             <br/>
             <h3>Have you forgotten password , Don't worry reset your password by Click Below
             </h3>
-            <a href="${process.env.BASE_URL}/auth/resetPassword/${authVerifytoken}/${id}" style="margin: 4px;background-color: black; color: #fff;padding:5px;">ResetPassword</a>
+            <a href="${process.env.BASE_URL}auth/resetPassword/${authVerifytoken}/${id}" style="margin: 4px;background-color: black; color: #fff;padding:5px;">ResetPassword</a>
             `,
     };
     transporter.sendMail(mailOptions, function (error, info) {
