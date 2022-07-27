@@ -81,7 +81,7 @@ export const updatePost_get = async (req, res) => {
   try {
     const id = req.params.id;
     const post = await blogpost.findById(id);
-    res.render("updatePost", { post });
+    res.render("updatepost", { post });
   } catch (err) {
     console.log(err);
     res.render("505");
