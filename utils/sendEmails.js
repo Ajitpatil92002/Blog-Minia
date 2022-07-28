@@ -21,7 +21,7 @@ export const sendVerifyEmail = (authVerifytoken, email, id) => {
             <br/>
             <h3>Thank you for Registration Click Below Button to Verify your Account
             </h3>
-            <a href="${process.env.BASE_URL}/auth/verifyAccount/${authVerifytoken}/${id} " style="background: #000; padding: 4px; color: #fff;">Verify Account</a>
+            <a href="${process.env.BASE_URL}auth/verifyAccount/${authVerifytoken}/${id} " style="background: #000; padding: 4px; color: #fff;">Verify Account</a>
             `,
     };
     transporter.sendMail(mailOptions, function (error, info) {
