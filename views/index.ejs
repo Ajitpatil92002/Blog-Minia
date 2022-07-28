@@ -9,7 +9,7 @@
   </head>
   <body class="bg-navy-blue">
     <%- include("./partials/header.ejs") -%>
-   
+
     <section id="">
       <div class="container mx-auto flex flex-col p-5">
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-3 md:p-5 mt-10">
@@ -84,6 +84,70 @@
         </div>
       </div>
     </section>
+
+    <div class="popup-overlay z-40 px-3">
+      <div class="popup-container bg-light-navy p-4 mt-10 md:mt-10">
+        <div class="popup-close">+</div>
+        <h2
+          class="popup-title text-textgreen tracking-wide text-xl font-semibold font-mono"
+        >
+          About BLOG MINIA
+        </h2>
+        <h3
+          class="text-sm md:text-xl font-bold font-mono tracking-widest text-textgreen mt-4"
+        >
+          What is Blog Minia ?
+        </h3>
+        <p
+          class="text-sm md:text-lg text-textlightWhite mt-5 opacity-70 tracking-wide"
+        >
+          A Blog Minia is an online journal or informational website displaying
+          information with the latest posts appearing first, at the top. It is a
+          platform where a User share their views on an individual subject.Here
+          User can Create, Edit and Delete the posts.
+        </p>
+        <p
+          class="text-sm md:text-base text-textlightWhite mt-2 font-bold font-mono tracking-wider opacity-80"
+        >
+          To Write a Blog Signup Your Account share your thoughts !
+        </p>
+        <p
+          class="text-sm md:text-base text-textlightWhite mt-2 font-bold font-mono tracking-wider opacity-80"
+        >
+          User Can Chosse a following Topics to write a blog
+        </p>
+        <ul
+          class="grid grid-rows-5 grid-flow-col gap-2 text-xs md:grid-rows-3 text-textlightWhite font-mono tracking-widest mt-3"
+        >
+          <li>
+            <span class="text-textgreen font-bold">▹</span>
+            <span class="opacity-70">TECH</span>
+          </li>
+          <li>
+            <span class="text-textgreen font-bold">▹</span>
+            <span class="opacity-70">SPORTS</span>
+          </li>
+          <li>
+            <span class="text-textgreen font-bold">▹</span>
+            <span class="opacity-70">ENTERTAINMENT</span>
+          </li>
+          <li>
+            <span class="text-textgreen font-bold">▹</span>
+            <span class="opacity-70">POLITICAL</span>
+          </li>
+          <li>
+            <span class="text-textgreen font-bold">▹</span>
+            <span class="opacity-70">EDUCATION</span>
+          </li>
+        </ul>
+        <button
+          type="submit"
+          class="mt-4 border font-mono border-green hover:bg-green-tint text-white py-2 px-6 rounded-lg text-textgreen"
+        >
+          Get More Details
+        </button>
+      </div>
+    </div>
     <%- include("./partials/footer.ejs") -%>
     <script src="./js/index.js"></script>
   </body>
