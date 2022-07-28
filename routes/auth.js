@@ -18,7 +18,7 @@ router.get("/register", register_get);
 router.post("/register", register_post);
 
 router.get("/verifyemail", (req, res) => {
-  res.render("verifyemail");
+  res.render("verifyEmail");
 });
 router.get("/verifyAccount/:token/:id", verifyAccount);
 
