@@ -14,27 +14,21 @@ export const register_post = async (req, res) => {
   try {
     const { username, email, password } = req.body;
     const { valid } = await isEmailValid(email);
-    if (valid) {
-      const user = new User({
-        email,
-        username,
-        password,
-        image: "img/userProfile.png",
-      });
-      await user.save();
-      const authVerifytoken = jwt.sign(
-        { id: user._id },
-        process.env.JWT_SECRET + user.password,
-        { expiresIn: "1h" }
-      );
-      sendVerifyEmail(authVerifytoken, email, user._id);
-      res.status(200).json({ msg: "/auth/verifyemail" });
-    } else {
-      const errors = {
-        email: "Enter valid email",
-      };
-      res.status(400).json({ errors });
-    }
+    console.log(valid);
+    const user = new User({
+      email,
+      username,
+      password,
+      image: "img/userProfile.png",
+    });
+    await user.save();
+    const authVerifytoken = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET + user.password,
+      { expiresIn: "1h" }
+    );
+    sendVerifyEmail(authVerifytoken, email, user._id);
+    res.status(200).json({ msg: "/auth/verifyemail" });
   } catch (err) {
     const errors = handleError(err);
     res.status(400).json({ errors });
