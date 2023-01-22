@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Post</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script
+      type="application/javascript"
+      src="/tinymce/tinymce.min.js"
+    ></script>
+    <script>
+      tinymce.init({
+        selector: "#mytextarea",
+      });
+    </script>
   </head>
   <body class="bg-navy-blue">
     <%- include("./partials/header.ejs") -%>
@@ -25,7 +34,7 @@
         >
           <div class="h-2 bg-green rounded-t-md"></div>
           <form
-            action="/user/postedit/<%= post._id %> "
+            action="/blog/edit-post/<%= post._id %> "
             method="post"
             enctype="multipart/form-data"
           >
@@ -63,6 +72,7 @@
                 >
                 <textarea
                   placeholder="Body"
+                  id="mytextarea"
                   name="body"
                   rows="4"
                   id=""

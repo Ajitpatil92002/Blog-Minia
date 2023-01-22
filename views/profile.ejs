@@ -61,7 +61,7 @@
           <button
             class="border-green text-textlightWhite border-2 w-24 text-center text-sm p-2 rounded-md font-normal hover:bg-green-tint"
           >
-            <a href="/blogpost/createpost/">Add Post</a>
+            <a href="/blog/create-post/">Add Post</a>
           </button>
         </div>
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -122,7 +122,9 @@
                     <td
                       class="text-sm text-textlightWhite opacity-80 font-light px-6 py-4 whitespace-nowrap"
                     >
-                      <a href="/post/<%= post._id %>"> <%= post.title.substring(0,20)+"..." %> </a>
+                      <a href="/post/<%= post._id %>">
+                        <%= post.title.substring(0,20)+"..." %>
+                      </a>
                     </td>
                     <td
                       class="text-sm text-textlightWhite opacity-80 font-light px-6 py-4 whitespace-nowrap"
@@ -137,13 +139,13 @@
                     <td
                       class="text-sm text-textlightWhite opacity-80 font-light px-6 py-4 whitespace-nowrap"
                     >
-                    <a href="/user/postedit/<%= post._id %> ">
-                      <button
-                        class="border-green border-2 w-24 text-center text-sm p-2 rounded-md font-normal hover:bg-green-tint"
-                      >
-                        Edit
-                      </button>
-                    </a>
+                      <a href="/blog/edit-post/<%= post._id %> ">
+                        <button
+                          class="border-green border-2 w-24 text-center text-sm p-2 rounded-md font-normal hover:bg-green-tint"
+                        >
+                          Edit
+                        </button>
+                      </a>
                     </td>
                     <td
                       class="text-sm text-textlightWhite opacity-80 font-light px-6 py-4 whitespace-nowrap"
@@ -151,7 +153,7 @@
                       <button
                         class="border-green border-2 w-24 text-center text-sm p-2 rounded-md font-normal hover:bg-green-tint"
                       >
-                        <a href="/user//postdelete/<%= post._id %> ">Delete</a>
+                        <a href="/blog/delete-post/<%= post._id %> ">Delete</a>
                       </button>
                     </td>
                   </tr>

@@ -3,13 +3,15 @@ import {
   getUser,
   post_getAll,
   post_getOne,
-} from "../controllers/postController.js";
+  post_getOnes,
+} from "../controllers/homeController.js";
 
 const router = express.Router();
 
 router.get("/", post_getAll);
 
 router.get("/post/:id", post_getOne);
+router.get("/:id", post_getOnes);
 
 router.get("/publisheduser/:id", getUser);
 

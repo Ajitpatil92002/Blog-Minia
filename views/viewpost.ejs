@@ -13,7 +13,7 @@
     <div class="container mx-auto flex justify-center flex-col p-5">
       <div class="md:max-w-xl">
         <img
-          src="/<%= post.image %> "
+          src="<%= post.image %> "
           alt=""
           class="rounded-md object-cover md:h-auto md:w-48"
         />
@@ -28,26 +28,41 @@
         <div class="mt-4 flex">
           <a href="/publisheduser/<%= post.userid._id %>">
             <img
-              src="/<%= post.userid.image %> "
+              src="<%= post.userid.image %> "
               alt=""
               class="rounded-full object h-8"
             />
           </a>
-          <a href="/publisheduser/<%= post.userid._id %>" class="cursor-pointer">
-            <p
-              class="text-textlightWhite text-sm font-mono px-4 text-center mt-2"
-            >
-              <%= post.userid.username %>
-            </p>
+          <a
+            href="/publisheduser/<%= post.userid._id %>"
+            class="cursor-pointer"
+          >
           </a>
         </div>
       </div>
-      <div class="text-textlightWhite font-sans mt-10">
-        <p><%= post.body %></p>
-      </div>
+      <div class="text-textlightWhite font-sans mt-5" id="body"></div>
     </div>
     <%- include("./partials/footer.ejs") -%>
 
     <script src="/js/index.js"></script>
+    <script>
+      
+      let body = document.getElementById("body");
+      let fetchdata = async()=>{
+        try {
+          const res = await fetch("/<%- post.id %>", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+
+          body.innerHTML = data.post.body
+          console.log(data)
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      fetchdata();
+    </script>
   </body>
 </html>

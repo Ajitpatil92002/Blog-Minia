@@ -1,10 +1,7 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
-import fs from "fs";
-import blogpost from "../models/post.js";
-import path from "path";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import blogpost from "../models/blog.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export const profile_get = async (req, res) => {
   try {
@@ -43,20 +40,14 @@ export const profile_edit = async (req, res) => {
 export const profile_edit_post = async (req, res) => {
   try {
     if (req.file) {
-      const image = "Userimages/" + req.file.filename;
-      const Updatedimage = image.replaceAll(" ", "");
-      const OldUser = await User.findById(req.params.id);
-      if (OldUser.image != "img/userProfile.png") {
-        await fs.unlink(`./static/${OldUser.image}`, (err) => {
-          if (err) {
-            return res.render("505");
-          }
-        });
-      }
+      const result = await cloudinary.v2.uploader.upload(req.file.path, {
+        folder: "BlogMinia/user-profiles",
+      });
+
       const user = await User.findByIdAndUpdate(
         req.params.id,
         {
-          $set: { ...req.body, image: Updatedimage },
+          $set: { ...req.body, image: result.secure_url },
         },
         { new: true }
       );
@@ -74,69 +65,5 @@ export const profile_edit_post = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(505).render("505");
-  }
-};
-
-export const updatePost_get = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const post = await blogpost.findById(id);
-    res.render("updatepost", { post });
-  } catch (err) {
-    console.log(err);
-    res.render("505");
-  }
-};
-
-export const updatePost = async (req, res) => {
-  try {
-    if (req.file) {
-      const oldPost = await blogpost.findById(req.params.id);
-      await fs.unlink(`./static/${oldPost.image}`, (err) => {
-        if (err) {
-          console.log(err);
-          res.render("505");
-          return;
-        }
-      });
-      let image = "Postimages/" + req.file.filename;
-      image = image.replaceAll(" ", "");
-      const id = req.params.id;
-      const post = await blogpost.findByIdAndUpdate(id, {
-        $set: { ...req.body, image: image },
-      });
-      res.redirect("/");
-      return;
-    } else {
-      const id = req.params.id;
-      const post = await blogpost.findByIdAndUpdate(id, {
-        $set: { ...req.body },
-      });
-      res.redirect("/");
-    }
-  } catch (err) {
-    if (err.code === 11000) {
-      console.log(err);
-      return res.status(400).render("ShowError", {
-        msg: "Title Must be Unique , Title is Already been Used!",
-      });
-    }
-    res.status(400).render("ShowError", {
-      msg: err.message,
-    });
-    console.log(err);
-  }
-};
-
-export const deletePost = async (req, res) => {
-  try {
-    try {
-      await blogpost.findByIdAndDelete(req.params.id);
-      res.status(200).redirect("/");
-    } catch (err) {
-      res.status(505).render(505);
-    }
-  } catch (err) {
-    res.status(500).json(err);
   }
 };

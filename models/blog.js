@@ -28,8 +28,11 @@ const PostSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    cloudinary_id: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
-
-export default mongoose.model("blogpost", PostSchema);
+const BlogModel = mongoose.model("blogpost", PostSchema);
+export default BlogModel;

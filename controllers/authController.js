@@ -1,8 +1,7 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { isEmailValid } from "../utils/validEmail.js";
-import { sendRestPasswordMail, sendVerifyEmail } from "../utils/sendEmails.js";
+import { sendMail } from "../utils/sendEmails.js";
 import { handleError } from "../utils/handleerror.js";
 
 const maxAge = (3 / 24) * 60 * 60;
@@ -13,8 +12,6 @@ export const register_get = (req, res) => {
 export const register_post = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const { valid } = await isEmailValid(email);
-    console.log(valid);
     const user = new User({
       email,
       username,
@@ -27,7 +24,19 @@ export const register_post = async (req, res) => {
       process.env.JWT_SECRET + user.password,
       { expiresIn: "1h" }
     );
-    sendVerifyEmail(authVerifytoken, email, user._id);
+    const mailOptions = {
+      from: "patilajit020@gmail.com",
+      to: email,
+      subject: "For Verification mail",
+      html: `<h3>Hello ${email} </h3>
+            <br/>
+            <h3>Thank you for Registration Click Below Button to Verify your Account
+            </h3>
+            <a href="${process.env.BASE_URL}auth/verifyAccount/${authVerifytoken}/${user._id} " style="background: #000; padding: 4px; color: #fff;">Verify Account</a>
+            `,
+    };
+
+    await sendMail({ mailOptions });
     res.status(200).json({ msg: "/auth/verifyemail" });
   } catch (err) {
     const errors = handleError(err);
@@ -98,7 +107,18 @@ export const forgetpassword_post = async (req, res) => {
     const Token = jwt.sign({ _id }, process.env.JWT_SECRET + user.password, {
       expiresIn: "1h",
     });
-    sendRestPasswordMail(Token, user.email, _id);
+    const mailOptions = {
+      from: "patilajit020@gmail.com",
+      to: email,
+      subject: "ResetPassword",
+      html: `<h3>Hello ${email} </h3>
+            <br/>
+            <h3>Have you forgotten password , Don't worry reset your password by Click Below
+            </h3>
+            <a href="${process.env.BASE_URL}auth/resetPassword/${Token}/${user._id}" style="margin: 4px;background-color: black; color: #fff;padding:5px;">ResetPassword</a>
+            `,
+    };
+    sendMail({ mailOptions });
     res.status(200).json({
       msg: `Please, Reset your Password link has been Sent to your Gmail Account :- ${user.email}`,
     });
