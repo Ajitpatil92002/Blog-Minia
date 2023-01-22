@@ -36,7 +36,7 @@ export const register_post = async (req, res) => {
             `,
     };
 
-    // await sendMail({ mailOptions });
+    await sendMail({ mailOptions });
     res.status(200).json({ msg: "/auth/verifyemail" });
   } catch (err) {
     const errors = handleError(err);
