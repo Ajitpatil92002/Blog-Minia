@@ -10,13 +10,15 @@ import dotenv from "dotenv";
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
-
+// DataBase Connection
 mongoose.connect(process.env.MONGO_URI, (err) => {
   if (err) {
     console.log(err);
@@ -25,6 +27,7 @@ mongoose.connect(process.env.MONGO_URI, (err) => {
   }
 });
 
+// Configuration setup Middlewares
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,6 +38,7 @@ app.use(
   express.static(path.join(__dirname, "node_modules", "tinymce"))
 );
 
+//Routes
 app.get("*", checkUser);
 app.use("/", checkUser, homeRoute);
 app.use("/auth", checkUser, authRoute);
