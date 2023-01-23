@@ -11,10 +11,11 @@ import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
-// mongodb+srv://AjitPatil:NOFixBhPUSJB8Xjf@cluster0.tlgafxd.mongodb.net/BlogMinia?retryWrites=true&w=majority
 const app = express();
-const PORT = process.env.PORT || 3000;
 dotenv.config();
+
+const PORT = process.env.PORT || 5000;
+
 
 mongoose.connect(process.env.MONGO_URI, (err) => {
   if (err) {
@@ -40,4 +41,4 @@ app.use("/auth", checkUser, authRoute);
 app.use("/user", checkUser, requiredAuth, userRoute);
 app.use("/blog", checkUser, requiredAuth, blogRoute);
 
-app.listen(PORT, () => console.log("App is Running"));
+app.listen(PORT, () => console.log("App is Running"+PORT));
