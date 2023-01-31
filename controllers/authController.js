@@ -16,7 +16,7 @@ export const register_post = async (req, res) => {
       email,
       username,
       password,
-      image: "img/userProfile.png",
+      image: "http://localhost:5000/img/userProfile.png",
     });
     await user.save();
     const authVerifytoken = jwt.sign(

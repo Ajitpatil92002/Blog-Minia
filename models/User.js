@@ -28,6 +28,7 @@ const UserSchema = new mongoose.Schema(
     },
     image: {
       type: String,
+      default: "http://localhost:5000/img/userProfile.png",
     },
     bio: {
       type: String,
