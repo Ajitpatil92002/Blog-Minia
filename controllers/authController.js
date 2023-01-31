@@ -32,7 +32,7 @@ export const register_post = async (req, res) => {
             <br/>
             <h3>Thank you for Registration Click Below Button to Verify your Account
             </h3>
-            <a href="${process.env.BASE_URL}auth/verifyAccount/${authVerifytoken}/${user._id} " style="background: #000; padding: 4px; color: #fff;">Verify Account</a>
+            <a href="${process.env.BASE_URL}/auth/verifyAccount/${authVerifytoken}/${user._id} " style="background: #000; padding: 4px; color: #fff;">Verify Account</a>
             `,
     };
 
