@@ -46,3 +46,5 @@ app.use("/user", checkUser, requiredAuth, userRoute);
 app.use("/blog", checkUser, requiredAuth, blogRoute);
 
 app.listen(PORT, () => console.log("App is Running"+PORT));
+
+export default app;
