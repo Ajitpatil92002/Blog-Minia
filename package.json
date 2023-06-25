@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npx tailwindcss -w -i ./static/css/input.css -o ./static/css/style.css",
     "start": "node index.js",
     "dev": "nodemon -e ejs,js",
     "build": "node index.js"
