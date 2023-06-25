@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon -e ejs,js",
-    "build": "npx tailwindcss -w -i ./static/css/input.css -o ./static/css/style.css && npm run start"
+    "dev": "nodemon -e ejs,js"
   },
   "type": "module",
   "keywords": [],
